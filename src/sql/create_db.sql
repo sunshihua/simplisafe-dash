@@ -1,0 +1,26 @@
+CREATE DATABASE HomeAutomation;
+
+CREATE TABLE IF NOT EXISTS sensorEvent (
+    event_id INT AUTO_INCREMENT PRIMARY KEY,
+    sensor_id VARCHAR(32) NOT NULL,
+    sensor_status VARCHAR(32) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    seq INT NOT NULL,
+    sensor_status_raw VARCHAR(32) NOT NULL,
+    state TINYINT
+)  ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS sensorInfo (
+    sensor_id VARCHAR(32) NOT NULL PRIMARY KEY,
+    sensor_name VARCHAR(32) NOT NULL,
+    sensor_type VARCHAR(32) NOT NULL,
+    latest_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)  ENGINE=INNODB;
+
+CREATE TABLE IF NOT EXISTS latestSensorStatus (
+    sensor_id VARCHAR(32) NOT NULL PRIMARY KEY,
+    sensor_status VARCHAR(32) NOT NULL,
+    latest_updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    latest_pinged_at TIMESTAMP NULL,
+    seq INT NOT NULL
+)  ENGINE=INNODB;
